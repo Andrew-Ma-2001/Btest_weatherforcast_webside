@@ -6,7 +6,10 @@ LOCATION_KEY = 'a099318042c608f01b656720ef58ec1e'
 
 class Little_Pony_Weather():
 
-    def __init__(self,WEATHER_KEY, LOCATION_KEY):
+    def __init__(self, WEATHER_KEY, LOCATION_KEY):
+        '''
+        这里两个 key 指的是从和风天气和高德地图里面的 api 的个人访问值
+        '''
         self.weather_key = WEATHER_KEY
         self.location_key = LOCATION_KEY
 
@@ -16,22 +19,21 @@ class Little_Pony_Weather():
         data = strhtml.json()
         self.province, self.city = data['province'], data['city']
 
-
     def get_city(self):
         self.get_location()
         url = 'https://geoapi.qweather.com/v2/city/lookup?' + 'location=' + str(self.city) \
               + '&key=' + self.weather_key
         strhtml = requests.get(url)
         data = strhtml.json()
-        self.city_name,self.city_id = data['location'][0]['name'], data['location'][0]['id']
-
+        self.city_name, self.city_id = data['location'][0]['name'], data['location'][0]['id']
 
     def get_city_weather(self):
         url = 'https://devapi.qweather.com/v7/weather/now?' + 'key=' + self.weather_key \
               + '&location=' + str(self.city_id)
         strhtml = requests.get(url)
         data = strhtml.json()
-        self.city_tem, self.weather_icon, self.weather_word = data['now']['temp'], data['now']['icon'], data['now']['text']
+        self.city_tem, self.weather_icon, self.weather_word = data['now']['temp'], data['now']['icon'], data['now'][
+            'text']
 
     def get_city_air(self):
         url = 'https://devapi.qweather.com/v7/air/now?' + 'key=' \
@@ -48,9 +50,10 @@ class Little_Pony_Weather():
         return [self.city, self.city_tem, self.weather_icon, self.weather_word, self.air]
 
 
-app = Little_Pony_Weather(WEATHER_KEY,LOCATION_KEY)
-a = app.return_data()
-print(a)
+if __name__ == '__main__':
+    app = Little_Pony_Weather(WEATHER_KEY, LOCATION_KEY)
+    a = app.return_data()
+    print(a)
 
 # def get_location():
 #     url = 'https://restapi.amap.com/v3/ip?' + 'key=' + LOCATION_KEY
