@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import pypinyin
 from find import Little_Pony_Weather
+from PIL import Image
 
 
 def pinyin(word):
@@ -56,6 +57,7 @@ def create_weather_img(model):
     cv2.putText(sheet, f'Air Quality Level:{air_level}', (30, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1)
     cv2.putText(sheet, f'Air Pollution Number:{air_number}', (30, 140), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1)
     sheet = cv2.resize(sheet, (500, 336))
+    sheet = cv2.cvtColor(sheet,cv2.COLOR_RGBA2BGR)
     return sheet
 
 
