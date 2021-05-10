@@ -1,15 +1,14 @@
 import requests
 
-WEATHER_KEY = '75d7f085da6e4c5186579e67a1320379'
-LOCATION_KEY = 'a099318042c608f01b656720ef58ec1e'
-
 
 class Little_Pony_Weather():
 
-    def __init__(self, WEATHER_KEY, LOCATION_KEY):
+    def __init__(self):
         '''
         这里两个 key 指的是从和风天气和高德地图里面的 api 的个人访问值
         '''
+        WEATHER_KEY = '75d7f085da6e4c5186579e67a1320379'
+        LOCATION_KEY = 'a099318042c608f01b656720ef58ec1e'
         self.weather_key = WEATHER_KEY
         self.location_key = LOCATION_KEY
 
@@ -47,13 +46,13 @@ class Little_Pony_Weather():
         self.get_city()
         self.get_city_weather()
         self.get_city_air()
-        return [self.city, self.city_tem, self.weather_icon, self.weather_word, self.air]
+        return self.city, self.city_tem, self.weather_icon, self.weather_word, self.air
 
 
 if __name__ == '__main__':
-    app = Little_Pony_Weather(WEATHER_KEY, LOCATION_KEY)
-    a = app.return_data()
-    print(a)
+    app = Little_Pony_Weather()
+    data = app.return_data()
+    print(data)
 
 # def get_location():
 #     url = 'https://restapi.amap.com/v3/ip?' + 'key=' + LOCATION_KEY
