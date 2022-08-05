@@ -7,8 +7,8 @@ class Little_Pony_Weather():
         '''
         这里两个 key 指的是从和风天气和高德地图里面的 api 的个人访问值
         '''
-        WEATHER_KEY = '75d7f085da6e4c5186579e67a1320379'
-        LOCATION_KEY = 'a099318042c608f01b656720ef58ec1e'
+        WEATHER_KEY = ''
+        LOCATION_KEY = ''
         self.weather_key = WEATHER_KEY
         self.location_key = LOCATION_KEY
 
